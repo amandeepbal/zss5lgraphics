@@ -1,0 +1,1051 @@
+{
+    "resources": [
+        {
+            "name": "Component-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "controller/app-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/app.controller.js"
+        },
+        {
+            "name": "di.code-validation.core_issues.json"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "libs/ssgraph/common/ssBase-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssBase.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssChoppedTrapFrame-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssChoppedTrapFrame.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssChoppedTrapPane-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssChoppedTrapPane.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssChoppedTrapSash-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssChoppedTrapSash.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssChoppedTrapScreen-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssChoppedTrapScreen.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssCurrentStructure-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssCurrentStructure.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssDoorHardware-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssDoorHardware.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssDoorSlab-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssDoorSlab.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssExtrusion-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssExtrusion.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssFrame-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssFrame.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssNoShape-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssNoShape.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssPane-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssPane.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssPatioFrame-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssPatioFrame.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssPatioSash-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssPatioSash.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssSash-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssSash.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssScreen-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssScreen.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssShade-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssShade.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssSpreaderBar-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssSpreaderBar.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssTrapFrame-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssTrapFrame.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssTrapPane-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssTrapPane.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssTrapSash-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssTrapSash.js"
+        },
+        {
+            "name": "libs/ssgraph/common/ssTrapScreen-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/common/ssTrapScreen.js"
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeck-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeck.js"
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckJoist-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckJoist.js"
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckMidSupport-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckMidSupport.js"
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckPlank-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckPlank.js"
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckStairSet-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckStairSet.js"
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckStringer-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckStringer.js"
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckSub-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckSub.js"
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckTread-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/decksystem/ssDeckTread.js"
+        },
+        {
+            "name": "libs/ssgraph/doors/ssEntryDoor-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/doors/ssEntryDoor.js"
+        },
+        {
+            "name": "libs/ssgraph/doors/ssFrenchDoors-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/doors/ssFrenchDoors.js"
+        },
+        {
+            "name": "libs/ssgraph/doors/ssFullScreen-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/doors/ssFullScreen.js"
+        },
+        {
+            "name": "libs/ssgraph/doors/ssPatioDoor-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/doors/ssPatioDoor.js"
+        },
+        {
+            "name": "libs/ssgraph/floorsystem/ssFloor-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/floorsystem/ssFloor.js"
+        },
+        {
+            "name": "libs/ssgraph/floorsystem/ssFloorPanel-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/floorsystem/ssFloorPanel.js"
+        },
+        {
+            "name": "libs/ssgraph/floorsystem/ssFloorSystem-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/floorsystem/ssFloorSystem.js"
+        },
+        {
+            "name": "libs/ssgraph/railingsystem/ssCornerPost-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/railingsystem/ssCornerPost.js"
+        },
+        {
+            "name": "libs/ssgraph/railingsystem/ssPicket-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/railingsystem/ssPicket.js"
+        },
+        {
+            "name": "libs/ssgraph/railingsystem/ssSection-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/railingsystem/ssSection.js"
+        },
+        {
+            "name": "libs/ssgraph/railingsystem/ssSpan-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/railingsystem/ssSpan.js"
+        },
+        {
+            "name": "libs/ssgraph/roofsystem/CopyOfssRoofSystem-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/roofsystem/CopyOfssRoofSystem.js"
+        },
+        {
+            "name": "libs/ssgraph/roofsystem/ssRoof-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/roofsystem/ssRoof.js"
+        },
+        {
+            "name": "libs/ssgraph/roofsystem/ssRoofPanel-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/roofsystem/ssRoofPanel.js"
+        },
+        {
+            "name": "libs/ssgraph/roofsystem/ssRoofSystem-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/roofsystem/ssRoofSystem.js"
+        },
+        {
+            "name": "libs/ssgraph/roofsystem/xssRoofPanel-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/roofsystem/xssRoofPanel.js"
+        },
+        {
+            "name": "libs/ssgraph/ssClient-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/ssClient.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWall-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWall.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWall2-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWall2.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWallSystem-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWallSystem.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWallSystem2-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWallSystem2.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWallSystem3-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWallSystem3.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWallSystem4-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWallSystem4.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWallSystem5-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/CopyOfssWallSystem5.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssDoorOpening-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssDoorOpening.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssGableWall-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssGableWall.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssKneewall-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssKneewall.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssMod-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssMod.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssMod200-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssMod200.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssOpening-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssOpening.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssTransom-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssTransom.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssTransomArea-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssTransomArea.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssWall-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssWall.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssWallSystem-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssWallSystem.js"
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssWindowArea-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/wallsystem/ssWindowArea.js"
+        },
+        {
+            "name": "libs/ssgraph/windows/ssAlumXXHR-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/windows/ssAlumXXHR.js"
+        },
+        {
+            "name": "libs/ssgraph/windows/ssChoppedTrapezoid-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/windows/ssChoppedTrapezoid.js"
+        },
+        {
+            "name": "libs/ssgraph/windows/ssH-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/windows/ssH.js"
+        },
+        {
+            "name": "libs/ssgraph/windows/ssRHTrap-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/windows/ssRHTrap.js"
+        },
+        {
+            "name": "libs/ssgraph/windows/ssTrapezoid-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/windows/ssTrapezoid.js"
+        },
+        {
+            "name": "libs/ssgraph/windows/ssV4T-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/windows/ssV4T.js"
+        },
+        {
+            "name": "libs/ssgraph/windows/ssWinFxGlass-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/windows/ssWinFxGlass.js"
+        },
+        {
+            "name": "libs/ssgraph/windows/ssWinFxGlassColonial-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/windows/ssWinFxGlassColonial.js"
+        },
+        {
+            "name": "libs/ssgraph/windows/ssWinScreen-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/ssgraph/windows/ssWinScreen.js"
+        },
+        {
+            "name": "libs/svgjs/svg-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "libs/svgjs/svg.js"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "tmp/Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "tmp/Component.js"
+        },
+        {
+            "name": "tmp/controller/app.controller.js"
+        },
+        {
+            "name": "tmp/i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "tmp/index.html"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssBase.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssChoppedTrapFrame.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssChoppedTrapPane.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssChoppedTrapSash.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssChoppedTrapScreen.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssCurrentStructure.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssDoorHardware.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssDoorSlab.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssExtrusion.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssFrame.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssNoShape.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssPane.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssPatioFrame.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssPatioSash.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssSash.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssScreen.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssShade.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssSpreaderBar.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssTrapFrame.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssTrapPane.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssTrapSash.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/common/ssTrapScreen.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/decksystem/ssDeck.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/decksystem/ssDeckJoist.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/decksystem/ssDeckMidSupport.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/decksystem/ssDeckPlank.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/decksystem/ssDeckStairSet.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/decksystem/ssDeckStringer.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/decksystem/ssDeckSub.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/decksystem/ssDeckTread.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/doors/ssEntryDoor.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/doors/ssFrenchDoors.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/doors/ssFullScreen.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/doors/ssPatioDoor.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/floorsystem/ssFloor.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/floorsystem/ssFloorPanel.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/floorsystem/ssFloorSystem.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/railingsystem/ssCornerPost.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/railingsystem/ssPicket.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/railingsystem/ssSection.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/railingsystem/ssSpan.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/roofsystem/CopyOfssRoofSystem.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/roofsystem/ssRoof.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/roofsystem/ssRoofPanel.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/roofsystem/ssRoofSystem.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/roofsystem/xssRoofPanel.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/ssClient.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/CopyOfssWall.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/CopyOfssWall2.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/CopyOfssWallSystem.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/CopyOfssWallSystem2.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/CopyOfssWallSystem3.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/CopyOfssWallSystem4.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/CopyOfssWallSystem5.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/ssDoorOpening.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/ssGableWall.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/ssKneewall.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/ssMod.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/ssMod200.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/ssOpening.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/ssTransom.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/ssTransomArea.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/ssWall.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/ssWallSystem.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/wallsystem/ssWindowArea.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/windows/ssAlumXXHR.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/windows/ssChoppedTrapezoid.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/windows/ssH.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/windows/ssRHTrap.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/windows/ssTrapezoid.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/windows/ssV4T.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/windows/ssWinFxGlass.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/windows/ssWinFxGlassColonial.js"
+        },
+        {
+            "name": "tmp/libs/ssgraph/windows/ssWinScreen.js"
+        },
+        {
+            "name": "tmp/libs/svgjs/svg.js"
+        },
+        {
+            "name": "tmp/manifest.json"
+        },
+        {
+            "name": "tmp/view/CopyOfapp.view.xml"
+        },
+        {
+            "name": "tmp/view/app.view.xml"
+        },
+        {
+            "name": "tmp-dbg/Component.js"
+        },
+        {
+            "name": "tmp-dbg/controller/app.controller.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssBase.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssChoppedTrapFrame.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssChoppedTrapPane.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssChoppedTrapSash.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssChoppedTrapScreen.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssCurrentStructure.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssDoorHardware.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssDoorSlab.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssExtrusion.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssFrame.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssNoShape.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssPane.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssPatioFrame.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssPatioSash.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssSash.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssScreen.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssShade.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssSpreaderBar.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssTrapFrame.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssTrapPane.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssTrapSash.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/common/ssTrapScreen.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/decksystem/ssDeck.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/decksystem/ssDeckJoist.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/decksystem/ssDeckMidSupport.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/decksystem/ssDeckPlank.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/decksystem/ssDeckStairSet.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/decksystem/ssDeckStringer.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/decksystem/ssDeckSub.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/decksystem/ssDeckTread.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/doors/ssEntryDoor.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/doors/ssFrenchDoors.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/doors/ssFullScreen.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/doors/ssPatioDoor.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/floorsystem/ssFloor.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/floorsystem/ssFloorPanel.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/floorsystem/ssFloorSystem.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/railingsystem/ssCornerPost.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/railingsystem/ssPicket.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/railingsystem/ssSection.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/railingsystem/ssSpan.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/roofsystem/CopyOfssRoofSystem.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/roofsystem/ssRoof.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/roofsystem/ssRoofPanel.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/roofsystem/ssRoofSystem.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/roofsystem/xssRoofPanel.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/ssClient.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/CopyOfssWall.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/CopyOfssWall2.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/CopyOfssWallSystem.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/CopyOfssWallSystem2.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/CopyOfssWallSystem3.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/CopyOfssWallSystem4.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/CopyOfssWallSystem5.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/ssDoorOpening.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/ssGableWall.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/ssKneewall.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/ssMod.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/ssMod200.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/ssOpening.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/ssTransom.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/ssTransomArea.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/ssWall.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/ssWallSystem.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/wallsystem/ssWindowArea.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/windows/ssAlumXXHR.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/windows/ssChoppedTrapezoid.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/windows/ssH.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/windows/ssRHTrap.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/windows/ssTrapezoid.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/windows/ssV4T.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/windows/ssWinFxGlass.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/windows/ssWinFxGlassColonial.js"
+        },
+        {
+            "name": "tmp-dbg/libs/ssgraph/windows/ssWinScreen.js"
+        },
+        {
+            "name": "tmp-dbg/libs/svgjs/svg.js"
+        },
+        {
+            "name": "view/CopyOfapp.view.xml"
+        },
+        {
+            "name": "view/app.view.xml"
+        }
+    ]
+}
