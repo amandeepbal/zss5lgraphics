@@ -1,0 +1,56 @@
+{
+  "routes": [
+    {
+      "path": "/services/userapi",
+      "target": {
+        "type": "service",
+        "name": "userapi"
+      }
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources",
+        "version": "1.52.4"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources",
+        "version": "1.52.4"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/themedesigner",
+      "target": {
+        "type": "application",
+        "name": "themedesigner"
+      },
+      "description": "Route for theme designer"
+    },
+    {
+      "path": "/zss5lcatheme",
+      "target": {
+        "type": "application",
+        "name": "zss5lcatheme"
+      },
+      "description": "Route for theme"
+    },
+    {
+      "path": "/resources/zss5lcabase",
+      "target": {
+        "type": "application",
+        "name": "zss5lcabase",
+        "entryPath": "/"
+      },
+      "description": "Base code"
+    }
+  ]
+}
