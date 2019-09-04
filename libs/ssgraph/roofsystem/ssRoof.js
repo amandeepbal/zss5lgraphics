@@ -1,0 +1,1433 @@
+sap.ui.define([
+	"zss5lcabase/common/ssMath",
+	"zss5lcabase/common/coreFunctions",
+	"zss5lgraphics/libs/ssgraph/common/ssBase"
+], function (ssMath, core, ssBase) {
+	return function (client, data, myParent, x, y) {
+		this.data = data;
+		this.client = client;
+		this.x = x;
+		this.y = y;
+		this.beamwidth = Number(0.50);
+		this.connectorwidth = Number(0.50);
+		this.ssparent = myParent;
+		this.container = undefined;
+		this.openings = {
+			container: undefined,
+			svg: undefined,
+			x: x,
+			y: y
+		};
+		this.building = undefined;
+		this.receiver = {
+			container: undefined,
+			svg: undefined,
+			x: x,
+			y: y
+		};
+		this.roofStyle = "S";
+		this.side = "";
+
+		this.fascialeft = {
+			container: undefined,
+			svg: undefined,
+			x: x,
+			y: y
+		};
+		this.fasciaright = {
+			container: undefined,
+			svg: undefined,
+			x: x,
+			y: y
+		};
+		this.gutter = {
+			container: undefined,
+			svg: undefined,
+			x: x,
+			y: y
+		};
+		this.beam = {
+			container: undefined,
+			svg: undefined,
+			x: x,
+			y: y
+		};
+		this.beamleft = {
+			container: undefined,
+			svg: undefined,
+			x: x,
+			y: y
+		};
+		this.beamright = {
+			container: undefined,
+			svg: undefined,
+			x: x,
+			y: y
+		};
+
+		this.dimensionsprojection = {
+			container: undefined,
+			svg1: undefined,
+			svg2: undefined,
+			svg3: undefined,
+			x: x,
+			y: y
+		};
+		this.dimensionswidth = {
+			container: undefined,
+			svg: undefined,
+			x: x,
+			y: y
+		};
+
+		this.mods = [];
+
+		this.isReady = false;
+		this.w = 0;
+		this.h = 0;
+
+		if (this.x === undefined) {
+			this.x = 0;
+		}
+		if (this.y === undefined) {
+			this.y = 0;
+		};
+
+		this.setData = function (data) {
+			this.data = data;
+		};
+		this.getData = function () {
+			return this.data;
+		};
+		this.setParent = function (parent) {
+			this.ssparent = parent;
+		};
+		this.getParent = function () {
+			return this.ssparent;
+		};
+		this.getClient = function () {
+			return this.client;
+		};
+
+		this.calculate = function () {
+			var data = this.getData();
+		};
+
+		this.render = function () {
+			var tw = 0;
+			var w = 0;
+			var l = 0;
+			var bx = 20;
+			var by = 5;
+			var o = 0;
+			var color = "WH";
+			this.rooftype = '1';
+
+			this.container = this.getParent().nested();
+			var data = this.getData();
+			this.isReady = true;
+
+			if (data.model["ROOF.STYLE"] != undefined) {
+				this.roofStyle = data.model["ROOF.STYLE"].value;
+			}
+			this.side = data.model.side;
+			this.connectorwidth = data.model.connectorWidth;
+			this.connectorcolor = "BL";
+
+			if (data.model["TBAR.COLOR"] != undefined) {
+				this.connectorcolor = data.model['TBAR.COLOR'].value;
+			};
+
+			if (data.model["WIDTH"] != undefined) {
+				w = Number(data.model["WIDTH"].value);
+			}
+			if (data.model["LENGTH"] != undefined) {
+				l = Number(data.model["LENGTH"].value);
+			}
+			if (data.model["OFFSET"] != undefined) {
+				o = Number(data.model["OFFSET"].value);
+			}
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+			if (data.model["ROOF.SYSTEM.TYPE"] != undefined) {
+				this.rooftype = data.model['ROOF.SYSTEM.TYPE'].value;
+			};
+			this.isInsulated = false;
+			this.isAcrylic = false;
+			this.isThermadeck = false;
+			switch (this.rooftype) {
+			case "1":
+				this.isInsulated = true;
+				break;
+			case "3":
+				this.isAcrylic = true;
+				break;
+			case "5":
+				this.isThermadeck = true;
+				break;
+			}
+
+			if (w <= 0) return;
+			if (l <= 0) return;
+
+			if (this.isAcrylic) {
+				//				this.beamwidth = Number(3.125);
+				this.connectorwidth = Number(3.125);
+			}
+
+			l = this.client.convert(l);
+			w = this.client.convert(w);
+			o = this.client.convert(o);
+			bx = this.client.convert(bx);
+			by = this.client.convert(by);
+
+			this.w = w;
+			this.l = l;
+			this.tw = tw;
+			this.color = color;
+
+			if (data.showBuilding != undefined && !data.showBuilding) {
+				by = 0;
+				bx = 0;
+			}
+
+			if (this.roofStyle === 'S') {
+				this.x1 = x + bx;
+				this.y1 = y + by;
+				this.x2 = this.x1 + w;
+				this.y2 = this.y1 + l;
+				this.y3 = this.y1;
+			} else {
+				this.x1 = x + bx;
+				this.y1 = y + by + o;
+				this.x2 = this.x1 + l;
+				this.y2 = this.y1 + w;
+				this.y3 = this.y1;
+			}
+
+			//			this.svg = this.container.polygon([this.x1, this.y1,
+			//				this.x1, this.y2,
+			//				this.x2, this.y2,
+			//				this.x2, this.y3
+			//			]);
+			//			this.svg.attr({
+			//				fill: ssBase.color[color].htmlcolor,
+			//				"stroke": ssBase.color['SC'].htmlcolor,
+			//				"stroke-width": 1
+			//			});
+			this.isReady = true;
+
+			if (data.showBuilding != undefined && !data.showBuilding) {} else {
+				this.renderBuilding();
+			}
+
+			switch (this.roofStyle) {
+			case "S":
+				this.renderStudioReceiver();
+				this.renderStudioFasciaLeft();
+				this.renderStudioGutter();
+				this.renderStudioBeam();
+				this.renderStudioFasciaRight();
+				this.renderStudioMods();
+				this.gutterInFront();
+				this.fasciaInFront();
+				this.receiverInFront();
+				this.showStudioDimensions();
+				break;
+			case "C":
+				this.renderStudioReceiver();
+				//			      this.renderStudioFasciaLeft();
+				this.renderCornerReceiverLeft();
+				this.renderStudioGutter();
+				this.renderStudioFasciaRight();
+				this.renderStudioMods();
+				this.receiverInFront();
+				break;
+			case "G":
+				if (this.side === "L") {
+					this.renderGableReceiverLeft();
+					this.renderGableMods();
+					this.renderGableGutterLeft();
+					this.renderGableFasciaLeft();
+					this.showGableDimensionsLeft();
+				}
+				if (this.side === "R") {
+					this.renderGableReceiverRight();
+					this.renderGableMods();
+					this.renderGableGutterRight();
+					this.renderGableFasciaRight();
+					this.showGableDimensionsRight();
+				}
+				this.receiverInFront();
+				break;
+			}
+
+			// use to put a bounding box when its selected  --- for hliting
+			this.instanceId = data.model.InstanceId;
+			var obj = {
+				x1: this.x1,
+				y1: this.y1,
+				x2: this.x2,
+				y2: this.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+			//			this.showItemLabel(this);
+			return this;
+
+		};
+		this.renderBuilding = function () {
+
+			var data = {
+				model: {
+					"EXTRUSION.COLOR": {
+						value: "WH"
+					},
+					"LENGTH": {
+						value: this.w
+					},
+					Content: {
+						general: {
+							shape: "BUILDING"
+						}
+					}
+				}
+			};
+			this.building = this.getClient().draw(data, this.x, this.y, this.container);
+
+		};
+		this.renderStudioReceiver = function () {
+			var h;
+			var w;
+			var x;
+			var y;
+			var f = 1.5;
+			var drop = 0;
+			var color = "WH";
+			var oExtrusions = core.getModel(this.getData().model.parent, "rsRoofExtrusions");
+			if (oExtrusions === undefined) {
+				return;
+			}
+			var data = core.getModel(oExtrusions, "rsReceiver");
+			if (data === undefined) return;
+
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+
+			if (data.model["DEPTH"] != undefined) {
+				w = Number(data.model["DEPTH"].value);
+			}
+			if (data.model["LENGTH"] != undefined) {
+				h = Number(data.model["LENGTH"].value);
+			}
+			w = this.client.convert(w);
+			h = this.client.convert(h);
+			f = this.client.convert(f);
+			x = this.x1;
+			y = this.y1;
+
+			this.receiver.container = this.container;
+			this.receiver.w = w;
+			this.receiver.h = h;
+			this.receiver.x1 = x - f;
+			this.receiver.y1 = y;
+			this.receiver.x2 = this.receiver.x1 + h;
+			this.receiver.y2 = this.receiver.y1 + this.receiver.w;
+			this.receiver.y3 = this.receiver.y1;
+
+			this.receiver.svg = this.receiver.container.polygon([this.receiver.x1, this.receiver.y1,
+				this.receiver.x1, this.receiver.y2,
+				this.receiver.x2, this.receiver.y2,
+				this.receiver.x2, this.receiver.y3
+			]);
+
+			this.receiver.svg.attr({
+				fill: ssBase.color[color].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+			var obj = {
+				x1: this.receiver.x1,
+				y1: this.receiver.y1,
+				x2: this.receiver.x2,
+				y2: this.receiver.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+		};
+		this.renderGableReceiverLeft = function () {
+			var h;
+			var w;
+			var x;
+			var y;
+			var drop = 0;
+			var color = "WH";
+
+			var oExtrusions = core.getModel(this.getData().model.parent, "rsRoofExtrusions");
+			if (oExtrusions === undefined) {
+				return;
+			}
+			var data = core.getModel(oExtrusions, "rsReceiverLeft");
+			if (data === undefined) return;
+
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+
+			if (data.model["DEPTH"] != undefined) {
+				w = Number(data.model["DEPTH"].value);
+			}
+			if (data.model["LENGTH"] != undefined) {
+				h = Number(data.model["LENGTH"].value);
+			}
+			w = this.client.convert(w);
+			h = this.client.convert(h);
+			x = this.x1;
+			y = this.y1;
+
+			this.receiverleft = {};
+			this.receiverleft.container = this.container;
+			this.receiverleft.w = w;
+			this.receiverleft.h = h;
+			this.receiverleft.x1 = x;
+			this.receiverleft.y1 = y;
+			this.receiverleft.x2 = this.receiverleft.x1 + this.receiverleft.h;
+			this.receiverleft.y2 = this.receiverleft.y1 + this.receiverleft.w;
+			this.receiverleft.y3 = this.receiverleft.y1;
+
+			this.receiverleft.svg = this.receiverleft.container.polygon([this.receiverleft.x1, this.receiverleft.y1,
+				this.receiverleft.x1, this.receiverleft.y2,
+				this.receiverleft.x2, this.receiverleft.y2,
+				this.receiverleft.x2, this.receiverleft.y3
+			]);
+
+			this.receiverleft.svg.attr({
+				fill: ssBase.color[color].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+			var obj = {
+				x1: this.receiverleft.x1,
+				y1: this.receiverleft.y1,
+				x2: this.receiverleft.x2,
+				y2: this.receiverleft.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+		};
+
+		this.renderGableReceiverRight = function () {
+			var h;
+			var w;
+			var x;
+			var y;
+			var drop = 0;
+			var color = "WH";
+
+			var oExtrusions = core.getModel(this.getData().model.parent, "rsRoofExtrusions");
+			if (oExtrusions === undefined) {
+				return;
+			}
+			var data = core.getModel(oExtrusions, "rsReceiverRight");
+			if (data === undefined) return;
+
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+
+			if (data.model["DEPTH"] != undefined) {
+				w = Number(data.model["DEPTH"].value);
+			}
+			if (data.model["LENGTH"] != undefined) {
+				h = Number(data.model["LENGTH"].value);
+			}
+			w = this.client.convert(w);
+			h = this.client.convert(h);
+			x = this.x1;
+			y = this.y1;
+
+			this.receiverright = {};
+			this.receiverright.container = this.container;
+			this.receiverright.w = w;
+			this.receiverright.h = h;
+			this.receiverright.x1 = x;
+			this.receiverright.y1 = y;
+			this.receiverright.x2 = this.receiverright.x1 + this.receiverright.h;
+			this.receiverright.y2 = this.receiverright.y1 + this.receiverright.w;
+			this.receiverright.y3 = this.receiverright.y1;
+
+			this.receiverright.svg = this.receiverright.container.polygon([this.receiverright.x1, this.receiverright.y1,
+				this.receiverright.x1, this.receiverright.y2,
+				this.receiverright.x2, this.receiverright.y2,
+				this.receiverright.x2, this.receiverright.y3
+			]);
+
+			this.receiverright.svg.attr({
+				fill: ssBase.color[color].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+			var obj = {
+				x1: this.receiverright.x1,
+				y1: this.receiverright.y1,
+				x2: this.receiverright.x2,
+				y2: this.receiverright.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+		};
+
+		this.receiverInFront = function () {
+			if (this.receiver != undefined && this.receiver.svg != undefined) {
+				this.receiver.svg.front();
+			}
+			if (this.receiverleft != undefined && this.receiverleft.svg != undefined) {
+				this.receiverleft.svg.front();
+			}
+			if (this.receiverright != undefined && this.receiverright.svg != undefined) {
+				this.receiverright.svg.front();
+			}
+		};
+		this.gutterInFront = function () {
+			if (this.gutter != undefined && this.gutter.svg != undefined) {
+				this.gutter.svg.front();
+			}
+			if (this.gutterleft != undefined && this.gutterleft.svg != undefined) {
+				this.gutterleft.svg.front();
+			}
+			if (this.gutterright != undefined && this.gutterright.svg != undefined) {
+				this.gutterright.svg.front();
+			}
+		};
+		this.fasciaInFront = function () {
+			if (this.fascia != undefined && this.fascia.svg != undefined) {
+				this.gutter.svg.front();
+			}
+			if (this.fascialeft != undefined && this.fascialeft.svg != undefined) {
+				this.fascialeft.svg.front();
+			}
+			if (this.fasciaright != undefined && this.fasciaright.svg != undefined) {
+				this.fasciaright.svg.front();
+			}
+		};
+		this.renderStudioPanelConnector = function (x, y, l) {
+			var w = this.connectorwidth;
+			var color = this.color;
+			w = this.client.convert(w);
+			l = this.client.convert(l);
+
+			var connector = {};
+			connector.container = this.container;
+			connector.w = w;
+			connector.l = l;
+			connector.x1 = x;
+			connector.y1 = y;
+			connector.x2 = connector.x1 + w;
+			connector.y2 = connector.y1 + connector.l;
+			connector.y3 = connector.y1;
+
+			connector.svg = connector.container.polygon([connector.x1, connector.y1,
+				connector.x1, connector.y2,
+				connector.x2, connector.y2,
+				connector.x2, connector.y3
+			]);
+
+			if (this.connectorcolor === undefined || this.connectorcolor === '') {
+				this.connectorcolor = 'BL';
+			}
+			connector.svg.attr({
+				fill: ssBase.color[this.connectorcolor].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+		};
+		this.renderGablePanelConnector = function (x, y, l) {
+			var w = this.connectorwidth;
+			var color = this.color;
+
+			w = this.client.convert(w);
+			l = this.client.convert(l);
+
+			var connector = {};
+			connector.container = this.container;
+			connector.w = w;
+			connector.l = l;
+			connector.x1 = x;
+			connector.y1 = y;
+			connector.x2 = connector.x1 + connector.l;
+			connector.y2 = connector.y1 + connector.w;
+			connector.y3 = connector.y1;
+
+			connector.svg = connector.container.polygon([connector.x1, connector.y1,
+				connector.x1, connector.y2,
+				connector.x2, connector.y2,
+				connector.x2, connector.y3
+			]);
+			if (this.connectorcolor === undefined || this.connectorcolor === '') {
+				this.connectorcolor = 'BL';
+			}
+			connector.svg.attr({
+				fill: ssBase.color[this.connectorcolor].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+		};
+
+		this.renderStudioFasciaLeft = function () {
+			var h;
+			var w;
+			var x;
+			var y;
+			var a = 5;
+			var color = "WH";
+
+			var oExtrusions = core.getModel(this.getData().model.parent, "rsRoofExtrusions");
+			if (oExtrusions === undefined) {
+				return;
+			}
+			var data = core.getModel(oExtrusions, "rsFasciaLeft");
+			if (data === undefined) return;
+
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+
+			if (data.model["DEPTH"] != undefined) {
+				w = Number(data.model["DEPTH"].value);
+				if (w === undefined) {
+					w = 1;
+				}
+			}
+			if (data.model["LENGTH"] != undefined) {
+				h = Number(data.model["LENGTH"].value);
+				if (h === undefined) {
+					h = 1;
+				}
+			}
+			w = this.client.convert(w);
+			h = this.client.convert(h);
+			a = this.client.convert(a);
+
+			x = this.x1 - w;
+			y = this.y1;
+
+			//			color = this.color;
+			this.fascialeft.container = this.container;
+			this.fascialeft.w = w;
+			this.fascialeft.h = h;
+			this.fascialeft.x1 = x;
+			this.fascialeft.y1 = y;
+			this.fascialeft.x2 = this.fascialeft.x1 + w;
+			this.fascialeft.y2 = this.fascialeft.y1 + this.fascialeft.h - a;
+			this.fascialeft.y3 = this.fascialeft.y1;
+
+			this.fascialeft.svg = this.fascialeft.container.polygon([this.fascialeft.x1, this.fascialeft.y1,
+				this.fascialeft.x1, this.fascialeft.y2,
+				this.fascialeft.x2, this.fascialeft.y2,
+				this.fascialeft.x2, this.fascialeft.y3
+			]);
+
+			this.fascialeft.svg.attr({
+				fill: ssBase.color[color].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+			var obj = {
+				x1: this.fascialeft.x1,
+				y1: this.fascialeft.y1,
+				x2: this.fascialeft.x2,
+				y2: this.fascialeft.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+		};
+		this.renderGableFasciaLeft = function () {
+			var h;
+			var w;
+			var x;
+			var y;
+			var a = 5;
+			var color = "WH";
+			var rs = "S";
+
+			var oExtrusions = core.getModel(this.getData().model.parent, "rsRoofExtrusions");
+			if (oExtrusions === undefined) {
+				return;
+			}
+			var data = core.getModel(oExtrusions, "rsFasciaLeft");
+			if (data === undefined) return;
+
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+
+			if (data.model["DEPTH"] != undefined) {
+				w = Number(data.model["DEPTH"].value);
+				if (w === undefined) {
+					w = 1;
+				}
+			}
+			if (data.model["LENGTH"] != undefined) {
+				h = Number(data.model["LENGTH"].value);
+				if (h === undefined) {
+					h = 1;
+				}
+			}
+			w = this.client.convert(w);
+			h = this.client.convert(h);
+			a = this.client.convert(a);
+
+			x = this.x1;
+			if (this.gutterleft != undefined) {
+				x = this.gutterleft.x1;
+			}
+
+			y = this.y2;
+
+			//			color = this.color;
+			this.fascialeft.container = this.container;
+			this.fascialeft.w = w;
+			this.fascialeft.h = h;
+			this.fascialeft.x1 = x;
+			this.fascialeft.y1 = y;
+			this.fascialeft.x2 = this.fascialeft.x1 + this.fascialeft.h - a;
+			this.fascialeft.y2 = this.fascialeft.y1 + this.fascialeft.w;
+			this.fascialeft.y3 = this.fascialeft.y1;
+
+			this.fascialeft.svg = this.fascialeft.container.polygon([this.fascialeft.x1, this.fascialeft.y1,
+				this.fascialeft.x1, this.fascialeft.y2,
+				this.fascialeft.x2, this.fascialeft.y2,
+				this.fascialeft.x2, this.fascialeft.y3
+			]);
+
+			this.fascialeft.svg.attr({
+				fill: ssBase.color[color].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+			var obj = {
+				x1: this.fascialeft.x1,
+				y1: this.fascialeft.y1,
+				x2: this.fascialeft.x2,
+				y2: this.fascialeft.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+		};
+		this.renderCornerReceiverLeft = function () {
+			var h;
+			var w;
+			var x;
+			var y;
+			var color = "WH";
+
+			var oExtrusions = core.getModel(this.getData().model.parent, "rsRoofExtrusions");
+			if (oExtrusions === undefined) {
+				return;
+			}
+			var data = core.getModel(oExtrusions, "rsReceiverCorner");
+			if (data === undefined) return;
+
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+
+			if (data.model["DEPTH"] != undefined) {
+				w = Number(data.model["DEPTH"].value);
+				if (w === undefined) {
+					w = 1;
+				}
+			}
+			if (data.model["LENGTH"] != undefined) {
+				h = Number(data.model["LENGTH"].value);
+				if (h === undefined) {
+					h = 1;
+				}
+			}
+			w = this.client.convert(w);
+			h = this.client.convert(h);
+
+			x = this.x1 - w;
+			y = this.y1;
+
+			//			color = this.color;
+			this.receiverleft = {};
+			this.receiverleft.container = this.container;
+			this.receiverleft.w = w;
+			this.receiverleft.h = h;
+			this.receiverleft.x1 = x;
+			this.receiverleft.y1 = y;
+			this.receiverleft.x2 = this.receiverleft.x1 + w;
+			this.receiverleft.y2 = this.receiverleft.y1 + this.receiverleft.h;
+			this.receiverleft.y3 = this.receiverleft.y1;
+
+			this.receiverleft.svg = this.receiverleft.container.polygon([this.receiverleft.x1, this.receiverleft.y1,
+				this.receiverleft.x1, this.receiverleft.y2,
+				this.receiverleft.x2, this.receiverleft.y2,
+				this.receiverleft.x2, this.receiverleft.y3
+			]);
+
+			this.receiverleft.svg.attr({
+				fill: ssBase.color[color].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+			var obj = {
+				x1: this.receiverleft.x1,
+				y1: this.receiverleft.y1,
+				x2: this.receiverleft.x2,
+				y2: this.receiverleft.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+		};
+		this.renderStudioGutter = function () {
+			var h;
+			var w;
+			var x;
+			var y;
+			var a = 3;
+			var drop = 0;
+			var color = "WH";
+
+			var oExtrusions = core.getModel(this.getData().model.parent, "rsRoofExtrusions");
+			if (oExtrusions === undefined) {
+				return;
+			}
+			var data = core.getModel(oExtrusions, "rsGutter");
+			if (data === undefined) return;
+
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+
+			if (data.model["DEPTH"] != undefined) {
+				w = Number(data.model["DEPTH"].value);
+				if (w === undefined) {
+					w = 1;
+				}
+			}
+			if (data.model["LENGTH"] != undefined) {
+				h = Number(data.model["LENGTH"].value);
+				if (h === undefined) {
+					h = 1;
+				}
+			}
+			w = this.client.convert(w);
+			h = this.client.convert(h);
+			a = this.client.convert(a);
+
+			x = this.x1;
+			y = this.y2;
+
+			this.gutter.container = this.container;
+			this.gutter.w = w;
+			this.gutter.h = h;
+			this.gutter.x1 = x;
+			this.gutter.y1 = y;
+			this.gutter.x2 = this.gutter.x1 + h - a;
+			this.gutter.y2 = this.gutter.y1 + this.gutter.w;
+			this.gutter.y3 = this.gutter.y1;
+
+			this.gutter.svg = this.gutter.container.polygon([this.gutter.x1, this.gutter.y1,
+				this.gutter.x1, this.gutter.y2,
+				this.gutter.x2, this.gutter.y2,
+				this.gutter.x2, this.gutter.y3
+			]);
+
+			this.gutter.svg.attr({
+				fill: ssBase.color[color].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+			var obj = {
+				x1: this.gutter.x1,
+				y1: this.gutter.y1,
+				x2: this.gutter.x2,
+				y2: this.gutter.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+
+		};
+		this.renderGableGutterLeft = function () {
+			var h;
+			var w;
+			var x;
+			var y;
+			var drop = 0;
+			var color = "WH";
+			var a = 3;
+			var oExtrusions = core.getModel(this.getData().model.parent, "rsRoofExtrusions");
+			if (oExtrusions === undefined) {
+				return;
+			}
+			var data = core.getModel(oExtrusions, "rsGutterLeft");
+			if (data === undefined) return;
+
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+
+			if (data.model["DEPTH"] != undefined) {
+				w = Number(data.model["DEPTH"].value);
+				if (w === undefined) {
+					w = 1;
+				}
+			}
+			if (data.model["LENGTH"] != undefined) {
+				h = Number(data.model["LENGTH"].value);
+				if (h === undefined) {
+					h = 1;
+				}
+			}
+			w = this.client.convert(w);
+			h = this.client.convert(h);
+			a = this.client.convert(a);
+
+			x = this.x1;
+			y = this.y1;
+
+			this.gutterleft = {};
+			this.gutterleft.container = this.container;
+			this.gutterleft.w = w;
+			this.gutterleft.h = h;
+			this.gutterleft.x1 = x - w;
+			this.gutterleft.y1 = y;
+			this.gutterleft.x2 = this.gutterleft.x1 + w;
+			this.gutterleft.y2 = this.gutterleft.y1 + this.gutterleft.h - a;
+			this.gutterleft.y3 = this.gutterleft.y1;
+
+			this.gutterleft.svg = this.gutterleft.container.polygon([this.gutterleft.x1, this.gutterleft.y1,
+				this.gutterleft.x1, this.gutterleft.y2,
+				this.gutterleft.x2, this.gutterleft.y2,
+				this.gutterleft.x2, this.gutterleft.y3
+			]);
+
+			this.gutterleft.svg.attr({
+				fill: ssBase.color[color].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+			var obj = {
+				x1: this.gutterleft.x1,
+				y1: this.gutterleft.y1,
+				x2: this.gutterleft.x2,
+				y2: this.gutterleft.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+
+		};
+		this.renderGableGutterRight = function () {
+			var h;
+			var w;
+			var x;
+			var y;
+			var a = 3;
+			var drop = 0;
+			var color = "WH";
+
+			var oExtrusions = core.getModel(this.getData().model.parent, "rsRoofExtrusions");
+			if (oExtrusions === undefined) {
+				return;
+			}
+			var data = core.getModel(oExtrusions, "rsGutterRight");
+			if (data === undefined) return;
+
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+
+			if (data.model["DEPTH"] != undefined) {
+				w = Number(data.model["DEPTH"].value);
+				if (w === undefined) {
+					w = 1;
+				}
+			}
+			if (data.model["LENGTH"] != undefined) {
+				h = Number(data.model['LENGTH'].value);
+				if (h === undefined) {
+					h = 1;
+				}
+			}
+			w = this.client.convert(w);
+			h = this.client.convert(h);
+			a = this.client.convert(a);
+
+			x = this.x2;
+			y = this.y1;
+
+			this.gutterright = {};
+			this.gutterright.container = this.container;
+			this.gutterright.w = w;
+			this.gutterright.h = h;
+			this.gutterright.x1 = x;
+			this.gutterright.y1 = y;
+			this.gutterright.x2 = this.gutterright.x1 + w;
+			this.gutterright.y2 = this.gutterright.y1 + this.gutterright.h - a;
+			this.gutterright.y3 = this.gutterright.y1;
+
+			this.gutterright.svg = this.gutterright.container.polygon([this.gutterright.x1, this.gutterright.y1,
+				this.gutterright.x1, this.gutterright.y2,
+				this.gutterright.x2, this.gutterright.y2,
+				this.gutterright.x2, this.gutterright.y3
+			]);
+
+			this.gutterright.svg.attr({
+				fill: ssBase.color[color].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+			var obj = {
+				x1: this.gutterright.x1,
+				y1: this.gutterright.y1,
+				x2: this.gutterright.x2,
+				y2: this.gutterright.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+
+		};
+		this.renderStudioBeam = function () {
+			var h;
+			var w;
+			var x;
+			var y;
+			var oh = 0;
+			var drop = 0;
+			var color = "WH";
+			var data = this.getData();
+
+			if (data.model["OVERHANG"] != undefined) {
+				oh = data.model['OVERHANG'].value;
+			};
+
+			var oExtrusions = core.getModel(this.getData().model.parent, "rsRoofExtrusions");
+			if (oExtrusions === undefined) {
+				return;
+			}
+			var data = core.getModel(oExtrusions, "rsBeam");
+			if (data === undefined) return;
+
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+
+			if (data.model["DEPTH"] != undefined) {
+				w = Number(data.model["DEPTH"].value);
+				if (w === undefined) {
+					w = 1;
+				}
+			}
+			if (data.model["LENGTH"] != undefined) {
+				h = Number(data.model["LENGTH"].value);
+				if (h === undefined) {
+					h = 1;
+				}
+			}
+			w = this.client.convert(w);
+			h = this.client.convert(h);
+			oh = this.client.convert(oh);
+
+			x = this.x1;
+			y = this.y2 - oh;
+
+			this.beam.container = this.container;
+			this.beam.w = w;
+			this.beam.h = h;
+			this.beam.x1 = x;
+			this.beam.y1 = y;
+			this.beam.x2 = this.beam.x1 + h;
+			this.beam.y2 = this.beam.y1 + this.beam.w;
+			this.beam.y3 = this.beam.y1;
+
+			this.beam.svg = this.beam.container.polygon([this.beam.x1, this.beam.y1,
+				this.beam.x1, this.beam.y2,
+				this.beam.x2, this.beam.y2,
+				this.beam.x2, this.beam.y3
+			]);
+
+			this.beam.svg.attr({
+				fill: ssBase.color[color].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+			var obj = {
+				x1: this.beam.x1,
+				y1: this.beam.y1,
+				x2: this.beam.x2,
+				y2: this.beam.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+
+		};
+
+		this.renderStudioFasciaRight = function () {
+			var h;
+			var w;
+			var x;
+			var y;
+			var a = 5;
+			var color = "WH";
+
+			var oExtrusions = core.getModel(this.getData().model.parent, "rsRoofExtrusions");
+			if (oExtrusions === undefined) {
+				return;
+			}
+			var data = core.getModel(oExtrusions, "rsFasciaRight");
+			if (data === undefined) return;
+
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+
+			if (data.model["DEPTH"] != undefined) {
+				w = Number(data.model["DEPTH"].value);
+				if (w === undefined) {
+					w = 1;
+				}
+			}
+			if (data.model["LENGTH"] != undefined) {
+				h = Number(data.model["LENGTH"].value);
+				if (h === undefined) {
+					h = 1;
+				}
+			}
+			w = this.client.convert(w);
+			h = this.client.convert(h);
+			a = this.client.convert(a);
+
+			x = this.x2;
+			y = this.y1;
+
+			this.fasciaright.container = this.container;
+			this.fasciaright.w = w;
+			this.fasciaright.h = h;
+			this.fasciaright.x1 = x;
+			this.fasciaright.y1 = y;
+			this.fasciaright.x2 = this.fasciaright.x1 + w;
+			this.fasciaright.y2 = this.fasciaright.y1 + this.fasciaright.h - a;
+			this.fasciaright.y3 = this.fasciaright.y1;
+
+			this.fasciaright.svg = this.fasciaright.container.polygon([this.fasciaright.x1, this.fasciaright.y1,
+				this.fasciaright.x1, this.fasciaright.y2,
+				this.fasciaright.x2, this.fasciaright.y2,
+				this.fasciaright.x2, this.fasciaright.y3
+			]);
+
+			this.fasciaright.svg.attr({
+				fill: ssBase.color[color].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+			var obj = {
+				x1: this.fasciaright.x1,
+				y1: this.fasciaright.y1,
+				x2: this.fasciaright.x2,
+				y2: this.fasciaright.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+		};
+		this.renderGableFasciaRight = function () {
+			var h;
+			var w;
+			var x;
+			var y;
+			var a = 5;
+			var color = "WH";
+
+			var oExtrusions = core.getModel(this.getData().model.parent, "rsRoofExtrusions");
+			if (oExtrusions === undefined) {
+				return;
+			}
+			var data = core.getModel(oExtrusions, "rsFasciaRight");
+			if (data === undefined) return;
+
+			if (data.model["EXTRUSION.COLOR"] != undefined) {
+				color = data.model['EXTRUSION.COLOR'].value;
+			};
+
+			if (data.model["DEPTH"] != undefined) {
+				w = Number(data.model["DEPTH"].value);
+				if (w === undefined) {
+					w = 1;
+				}
+			}
+			if (data.model["LENGTH"] != undefined) {
+				h = Number(data.model["LENGTH"].value);
+				if (h === undefined) {
+					h = 1;
+				}
+			}
+			w = this.client.convert(w);
+			h = this.client.convert(h);
+			a = this.client.convert(a);
+
+			x = this.x2 - h + a;
+			y = this.y2;
+
+			this.fasciaright.container = this.container;
+			this.fasciaright.w = w;
+			this.fasciaright.h = h;
+			this.fasciaright.x1 = x;
+			this.fasciaright.y1 = y;
+			this.fasciaright.x2 = this.fasciaright.x1 + this.fasciaright.h - a;
+			this.fasciaright.y2 = this.fasciaright.y1 + this.fasciaright.w;
+			this.fasciaright.y3 = this.fasciaright.y1;
+
+			this.fasciaright.svg = this.fasciaright.container.polygon([this.fasciaright.x1, this.fasciaright.y1,
+				this.fasciaright.x1, this.fasciaright.y2,
+				this.fasciaright.x2, this.fasciaright.y2,
+				this.fasciaright.x2, this.fasciaright.y3
+			]);
+
+			this.fasciaright.svg.attr({
+				fill: ssBase.color[color].htmlcolor,
+				"stroke": "#000",
+				"stroke-width": 1
+			});
+			var obj = {
+				x1: this.fasciaright.x1,
+				y1: this.fasciaright.y1,
+				x2: this.fasciaright.x2,
+				y2: this.fasciaright.y2,
+				instanceId: data.model.InstanceId
+			};
+			this.client.hliteObject(obj);
+		};
+
+		this.renderStudioMods = function () {
+			var objmods = core.getModels(this.getData(), 'rsPanel');
+			if (objmods === undefined) {
+				return;
+			}
+			objmods.sort(function (a, b) {
+				return (Number(a.Data.Position) > Number(b.Data.Position)) ? 1 : ((Number(b.Data.Position) > Number(a.Data.Position)) ? -1 : 0);
+			});
+			var x = this.x1;
+			var y = this.y1;
+			var w = 0;
+			var l = 0;
+			var c = this.client.convert(this.connectorwidth);
+			var b = this.client.convert(this.beamwidth);
+
+			for (var i = 0; i < objmods.length; i++) {
+				var amod = objmods[i];
+				amod.isGable = false;
+				amod.showDimensions = data.showDimensions;
+				amod.showLabels = data.showLabels;
+				if (this.isAcrylic && i == 0) {
+					this.renderStudioPanelConnector(x, y, amod.model['LENGTH'].value);
+					//					this.renderStudioBeam(x, y, amod.model['LENGTH'].value);
+					x = x + c;
+				}
+				var mod = this.getClient().draw(amod, x, y, this.container);
+				this.mods.push(mod);
+				if (mod === undefined) {
+					continue;
+				}
+				x = mod.ox2;
+				if (this.isInsulated || this.isAcrylic) {
+					this.renderStudioPanelConnector(x, y, amod.model['LENGTH'].value);
+					x = mod.ox2 + c;
+					y = mod.oy1;
+				}
+			}
+			//			if(this.isAcrylic) {this.renderStudioBeam(x,y, amod.model['LENGTH'].value);}
+
+		};
+		this.renderGableMods = function () {
+			var objmods = core.getModels(this.getData(), 'rsPanel');
+			if (objmods === undefined) {
+				return;
+			}
+			objmods.sort(function (a, b) {
+				return (Number(a.Data.Position) > Number(b.Data.Position)) ? 1 : ((Number(b.Data.Position) > Number(a.Data.Position)) ? -1 : 0);
+			});
+			var x = this.x1;
+			var y = this.y1;
+			var w = 0;
+			var l = 0;
+			var b = this.client.convert(this.beamwidth);
+			var c = this.client.convert(this.connectorwidth);
+
+			for (var i = 0; i < objmods.length; i++) {
+				var amod = objmods[i];
+				amod.side = this.side;
+				amod.isGable = true;
+				amod.showDimensions = data.showDimensions;
+				amod.showLabels = data.showLabels;
+				//				if (this.isAcrylic && i == 0) {
+				//					this.renderGableBeam(x, y, amod.model['LENGTH'].value);
+				//					y = y + b;
+				//				}
+				var mod = this.getClient().draw(amod, x, y, this.container);
+				if (mod === undefined) {
+					continue;
+				}
+				this.mods.push(mod);
+				y = mod.oy2 + c;
+				this.renderGablePanelConnector(x, y, amod.model['LENGTH'].value);
+				//				x = mod.ox1;
+				y = mod.oy2 + b;
+			}
+			//			if(this.isAcrylic) {this.renderGableBeam(x,y, amod.model['LENGTH'].value);}
+		};
+		this.renderStudioPosts = function () {
+			var oposts = core.getModel(this.getData(), "rsPosts");
+			if (oposts === undefined) return;
+
+			var objmods = core.getModels(oposts, "rsPost");
+			if (objmods === undefined) {
+				return;
+			}
+			objmods.sort(function (a, b) {
+				return (Number(a.Data.Position) > Number(b.Data.Position)) ? 1 : ((Number(b.Data.Position) > Number(a.Data.Position)) ? -1 : 0);
+			});
+			var px = this.x1;
+			var py = this.y2;
+			var w = 0;
+			var l = 0;
+			var b = this.client.convert(this.beamwidth);
+
+			for (var i = 0; i < objmods.length; i++) {
+				var amod = objmods[i];
+				var mod = this.drawPost(amod, px, py);
+				this.mods.push(mod);
+				if (mod === undefined) {
+					continue;
+				}
+			}
+		};
+		this.drawPost = function (mod, x1, y1) {
+			//			var b = this.client.convert(3);
+			//			var ox = Number(mod.model['OFFSETX'].value);
+			//			var oy = Number(mod.model['OFFSETY'].value);
+			//			ox = this.client.convert(ox);
+			//			oy = this.client.convert(oy);
+
+			//			var px = x1 + ox;
+			//			var py = y1 - oy;
+			//			if (py < 0) {
+			//				py = 0;
+			//			};
+			//			if (px > this.x2) {
+			//				px = this.x2;
+			//			};
+			//			var svg = this.container.polygon([px, py,
+			//				px, py + b,
+			//				px + b, py + b,
+			//				px + b, py
+			//			]);
+			//			svg.attr({
+			//				fill: '000000',
+			//				"stroke": ssBase.color['SC'].htmlcolor,
+			//				"stroke-width": 1
+			//			});
+			mod.roofx1 = this.x1;
+			mod.roofy1 = this.y1;
+			mod.roofx2 = this.x2;
+			mod.roofy2 = this.y2;
+			var opost = this.getClient().draw(mod, this.x1, this.y2, this.container);
+			this.posts.push(opost);
+		};
+
+		this.showStudioDimensions = function () {
+			var data = this.getData();
+			if (data.showDimensions === undefined || !data.showDimensions) {
+				return;
+			}
+			var l = 1;
+			var w = 1;
+			if (data === undefined) return;
+
+			if (data.model["WIDTH"] != undefined) {
+				w = Number(data.model["WIDTH"].value);
+			}
+			if (data.model["LENGTH"] != undefined) {
+				l = Number(data.model["LENGTH"].value);
+			}
+			w = this.client.convert(w);
+			l = this.client.convert(l);
+
+			var tx1 = this.x1;
+			var tx2 = this.x1 + w;
+			var ty1 = this.y1;
+			var ty2 = this.y1 + l;
+
+			this.dimensionsprojection = ssBase.showLabel(this.container, core.formatMeasurement(data.model['LENGTH'].value), 'V', 10, ty1, 10,
+				ty2);
+			this.dimensionswidth = ssBase.showLabel(this.container, core.formatMeasurement(data.model['WIDTH'].value), 'H', tx1, ty2 + 20,
+				tx2,
+				ty2 + 20);
+		};
+		this.showGableDimensionsLeft = function () {
+			var data = this.getData();
+			if (data.showDimensions === undefined || !data.showDimensions) {
+				return;
+			}
+			var l = 1;
+			var w = 1;
+			if (data === undefined) return;
+
+			if (data.model["WIDTH"] != undefined) {
+				w = Number(data.model["WIDTH"].value);
+			}
+			if (data.model["LENGTH"] != undefined) {
+				l = Number(data.model["LENGTH"].value);
+			}
+			w = this.client.convert(w);
+			l = this.client.convert(l);
+
+			var tx1 = this.x1;
+			var tx2 = this.x1 + l;
+			var ty1 = this.y1;
+			var ty2 = this.y1 + w;
+
+			this.dimensionsprojection = ssBase.showLabel(this.container, core.formatMeasurement(data.model['WIDTH'].value), 'V', 10, ty1, 10,
+				ty2);
+			this.dimensionswidth = ssBase.showLabel(this.container, core.formatMeasurement(data.model['LENGTH'].value), 'H', x + tx1, ty2 +
+				20,
+				tx2,
+				ty2 + 20);
+
+		};
+		this.showGableDimensionsRight = function () {
+			var data = this.getData();
+			if (data.showDimensions === undefined || !data.showDimensions) {
+				return;
+			}
+			var l = 1;
+			var w = 1;
+			if (data === undefined) return;
+
+			if (data.model["WIDTH"] != undefined) {
+				w = Number(data.model["WIDTH"].value);
+			}
+			if (data.model["LENGTH"] != undefined) {
+				l = Number(data.model["LENGTH"].value);
+			}
+			w = this.client.convert(w);
+			l = this.client.convert(l);
+
+			var tx1 = this.x1;
+			var tx2 = this.x1 + l;
+			var ty1 = this.y1;
+			var ty2 = this.y1 + w;
+
+			this.dimensionsprojection = ssBase.showLabel(this.container, core.formatMeasurement(data.model['WIDTH'].value), 'V', tx2 + 10,
+				ty1,
+				tx2 + 10,
+				ty2);
+			this.dimensionswidth = ssBase.showLabel(this.container, core.formatMeasurement(data.model['LENGTH'].value), 'H', tx1, ty2 + 20,
+				tx2,
+				ty2 + 20);
+		};
+	};
+
+});
